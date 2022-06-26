@@ -1,0 +1,110 @@
+version: '3.1'
+intents:
+- affirm
+- bot_challenge
+- deny
+- goodbye
+- greet
+- mood_great
+- mood_unhappy
+- chao_hoi
+- hoi_thong_tin_san
+- hoi_gia_thue_san
+- hoi_khuyen_mai
+- hoi_tinh_nang_chatbot
+- dat_san_bong
+- dat_san_bong_entity_ten_san_bong
+- san_bong_trong_dia_ban
+- san_bong_trong_dia_ban_entity_ten_san_bong
+- hoi_dich_vu_khac
+- hoi_chi_tiet_san_pham
+- hoi_dich_vu_di_kem
+
+
+entities:
+- ten_san_bong
+- ten_dia_ban
+- san_pham
+
+slots:
+  ten_san_bong:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: ten_san_bong
+
+  ten_dia_ban:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: ten_dia_ban
+
+  san_pham:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: san_pham
+
+responses:
+  utter_greet:
+  - text: Hey! How are you?
+  utter_cheer_up:
+  - text: 'Here is something to cheer you up:'
+    image: https://i.imgur.com/nGF1K8f.jpg
+  utter_did_that_help:
+  - text: Did that help you?
+  utter_happy:
+  - text: Great, carry on!
+  utter_goodbye:
+  - text: Bye
+  utter_iamabot:
+  - text: I am a bot, powered by Rasa.
+  utter_chao_hoi:
+  - text: Chào bạn, tôi có thể giúp gì cho bạn?
+  - text: Xin chào, bạn đang cần gì ạ?
+  utter_thong_tin_san:
+  - text: |
+          Chúng tôi cho thuê sân 5 và sân 7 tại khu vực nội thành Đà Nẵng, 
+          để biết thêm chi tiết bạn vui lòng click vào link này : https://92f2-116-105-174-200.ap.ngrok.io/booking
+  utter_gia_thue_san:
+  - text: |
+          Giá thuê mỗi sân bóng giao động từ 150.000vnđ - 400.000vnđ tuỳ thời gian và loại sân, 
+          để biết thêm chi tiết bạn vui lòng click vào link này: https://92f2-116-105-174-200.ap.ngrok.io/booking
+  utter_khuyen_mai:
+  - text: Hiện tại chúng tôi có chương trình khuyến mãi rút thăm trực tiếp tại sân để nhận quà. 
+            Mỗi sân được thuê sẽ có 3 lượt rút thăm 100% có quà từ áo quần đến giày thể thao. 
+            Nhanh tay đặt sân để nhận quà nhé.  
+  utter_tinh_nang_chatbot:
+  - text: Tôi có thể trả lời các câu hỏi cơ bản về thông tin dịch vụ, khuyến mãi. 
+          Ngoài ra tôi còn có thể đề xuất cho bạn các sân bóng gần vị trí của bạn, 
+          các sản phẩm thể thao mà bạn muốn mua cũng như dự báo thời tiết để thuận tiện có việc lên kế hoạch đặt sân.
+  utter_hoi_ten_san_bong:
+  - text: Bạn muốn đặt ở sân bóng nào?
+
+  utter_hoi_ten_dia_ban:
+  - text: Bạn đang ở khu vực nào?
+  - text: Bạn muốn tìm sân gần khu vực nào?
+
+  utter_dich_vu_khac:
+  - text: Chúng tôi còn bán quần áo, giày và dụng cụ thể thao. 
+        Đây là danh sách sản phẩm đang được bày bán https://92f2-116-105-174-200.ap.ngrok.io/products
+  
+  utter_dich_vu_di_kem:
+  - text: Khi ở trang đặt sân, các bạn có thể chọn các dịch vụ đi kèm như mua nước, thức ăn hoặc thuê trọng tài,... 
+          hoặc có thể mua trực tiếp tại sân bóng.
+
+  
+
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
+actions:
+- utter_goodbye
+- utter_greet
+- action_show_link_san_bong
+- action_show_link_san_bong_tren_dia_ban
+- action_show_link_san_pham_chi_tiet

@@ -1,0 +1,130 @@
+version: "3.1"
+
+stories:
+
+- story: happy path
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_great
+  - action: utter_happy
+
+- story: sad path 1
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_unhappy
+  - action: utter_cheer_up
+  - action: utter_did_that_help
+  - intent: affirm
+  - action: utter_happy
+
+- story: sad path 2
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_unhappy
+  - action: utter_cheer_up
+  - action: utter_did_that_help
+  - intent: deny
+  - action: utter_goodbye
+
+- story: interactive_story_1
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: goodbye
+  - action: utter_goodbye
+  - intent: mood_great
+
+- story: chao hoi
+  steps:
+  - intent: chao_hoi
+  - action: utter_chao_hoi
+
+- story: hoi thong tin cac san bong
+  steps:
+  - intent: hoi_thong_tin_san
+  - action: utter_thong_tin_san
+
+- story: hoi thong tin gia ca
+  steps:
+  - intent: hoi_gia_thue_san
+  - action: utter_gia_thue_san
+
+- story: hoi thong tin khuyen mai
+  steps:
+  - intent: hoi_khuyen_mai
+  - action: utter_khuyen_mai
+
+- story: hoi cac tinh nang cua chatbot
+  steps:
+  - intent: hoi_tinh_nang_chatbot
+  - action: utter_tinh_nang_chatbot
+
+- story: dat san bong chua co entity ten san bong
+  steps:
+  - intent: dat_san_bong
+  - action: utter_hoi_ten_san_bong
+  - intent: dat_san_bong_entity_ten_san_bong
+    entities:
+    - ten_san_bong: FPT
+  - slot_was_set:
+    - ten_san_bong: FPT
+  - action: action_show_link_san_bong 
+
+- story: dat san bong co entity ten san bong
+  steps:
+  - intent: dat_san_bong_entity_ten_san_bong
+    entities:
+    - ten_san_bong: FPT
+  - slot_was_set:
+    - ten_san_bong: FPT
+  - action: action_show_link_san_bong 
+
+- story: hoi san bong gan vi tri nguoi dan chua co entity vi tri
+  steps:
+  - intent: san_bong_trong_dia_ban
+  - action: utter_hoi_ten_dia_ban
+  - intent: san_bong_trong_dia_ban_entity_ten_san_bong
+    entities:
+    - ten_dia_ban: Quang Vinh
+  - slot_was_set:
+    - ten_dia_ban: Quang Vinh
+  - action: action_show_link_san_bong_tren_dia_ban
+
+- story: hoi san bong gan vi tri nguoi dung co entity 
+  steps: 
+  - intent: san_bong_trong_dia_ban_entity_ten_san_bong
+    entities:
+    - ten_dia_ban: Quang Vinh
+  - slot_was_set:
+    - ten_dia_ban: Quang Vinh
+  - action: action_show_link_san_bong_tren_dia_ban
+
+- story: hoi dich vu khac
+  steps:
+  - intent: hoi_dich_vu_khac
+  - action: utter_dich_vu_khac
+  - intent: hoi_chi_tiet_san_pham
+    entities:
+    - san_pham: giày
+  - slot_was_set:
+    - san_pham: giày
+  - action: action_show_link_san_pham_chi_tiet
+
+- story: hoi dich vu khac chi tiet san pham
+  steps:
+  - intent: hoi_chi_tiet_san_pham
+    entities:
+    - san_pham: giày
+  - slot_was_set:
+    - san_pham: giày
+  - action: action_show_link_san_pham_chi_tiet
+
+
+
+
+
+
+

@@ -1,0 +1,199 @@
+version: "3.1"
+nlu:
+- intent: greet
+  examples: |
+    - hey
+    - hello
+    - hi
+    - hello there
+    - good morning
+    - good evening
+    - moin
+    - hey there
+    - let's go
+    - hey dude
+    - goodmorning
+    - goodevening
+    - good afternoon
+
+- intent: goodbye
+  examples: |
+    - cu
+    - good by
+    - cee you later
+    - good night
+    - bye
+    - goodbye
+    - have a nice day
+    - see you around
+    - bye bye
+    - see you later
+
+- intent: affirm
+  examples: |
+    - yes
+    - y
+    - indeed
+    - of course
+    - that sounds good
+    - correct
+    - oke
+
+- intent: deny
+  examples: |
+    - no
+    - n
+    - never
+    - I don't think so
+    - don't like that
+    - no way
+    - not really
+
+- intent: mood_great
+  examples: |
+    - perfect
+    - great
+    - amazing
+    - feeling like a king
+    - wonderful
+    - I am feeling very good
+    - I am great
+    - I am amazing
+    - I am going to save the world
+    - super stoked
+    - extremely good
+    - so so perfect
+    - so good
+    - so perfect
+
+- intent: mood_unhappy
+  examples: |
+    - my day was horrible
+    - I am sad
+    - I don't feel very well
+    - I am disappointed
+    - super sad
+    - I'm so sad
+    - sad
+    - very sad
+    - unhappy
+    - not good
+    - not very good
+    - extremly sad
+    - so saad
+    - so sad
+- intent: bot_challenge
+  examples: |
+    - are you a bot?
+    - are you a human?
+    - am I talking to a bot?
+    - am I talking to a human?
+
+- intent: chao_hoi
+  examples: |
+    - Chào bạn
+    - Chào buổi sáng
+    - Xin chào
+    - Có ai ở đây không
+    - Tôi cần giúp đỡ
+    - tôi cần giúp
+
+- intent: hoi_thong_tin_san
+  examples: |
+    - Ở đây có những loại sân gì bạn?
+    - Cho thuê sân bóng mini hay sân lớn?
+    - Có bao nhiêu sân để thuê vậy?
+    - Cho thuê ở đâu vậy?
+    - xem danh sách sân bóng
+    - list các sân
+    - có các sân bóng nào ở đây
+
+
+- intent: hoi_gia_thue_san
+  examples: |
+    - Thuê sân giá bao nhiêu?
+    - Sân mini thuê mấy vậy bạn?
+    - Cho mình hỏi giá sân mini và sân lớn?
+    - Thuê trong 1 tiếng giá mấy bạn?
+    - giá cả thế nào 
+
+- intent: hoi_khuyen_mai
+  examples: |
+    - Thuê nhiều có ưu đãi gì không?
+    - Đang có chương trình khuyến mãi gì không bạn?
+    - Thuê sân có được nhận quà không?
+
+- intent: hoi_tinh_nang_chatbot
+  examples: |
+    - Bạn có thể làm gì?
+    - Bạn có thể giúp gì cho tôi
+    - Bạn hỗ trợ tôi được cái gì
+
+- intent: dat_san_bong
+  examples: |
+    - Tôi muốn đặt sân bóng
+    - Muốn thuê sân bóng
+    - Muốn đá bóng
+    - Đá banh
+    - Thuê sân đá banh
+    - Đặt sân để đá
+
+- intent: dat_san_bong_entity_ten_san_bong
+  examples: |
+    - Tôi muốn đặt ở sân [Tuyên Sơn](ten_san_bong)
+    - Thuê ở sân [Ngũ Hành Sơn](ten_san_bong)
+    - Đá ở [Hoà Vang](ten_san_bong)
+    - [Nam Phước](ten_san_bong)
+    - [Hoà Hải](ten_san_bong)
+    - [FPT](ten_san_bong)
+    - [Tân Sơn Nhất](ten_san_bong)
+    - [Hoà Sơn](ten_san_bong)
+
+- intent: san_bong_trong_dia_ban
+  examples: |
+    - Có sân nào gần tôi không?
+    - gần đây có sân nào không?
+    - chỗ này có sân nào hoạt động không?
+    - ở đây có sân nào gần k?
+
+- intent: san_bong_trong_dia_ban_entity_ten_san_bong
+  examples: |
+    - Có sân nào gần [Quang Vinh](ten_dia_ban) không?
+    - [Quang Thị Lại](ten_dia_ban) có sân nào không?
+    - [Nam Kì Khởi Nghĩa](ten_dia_ban) có sân nào hoạt động không?
+    - [Nguyễn Hữu Thọ](ten_dia_ban) có sân nào gần k?
+
+- intent: hoi_dich_vu_khac
+  examples: |
+    - Ở đây có bán gì ngoài đặt sân không bạn?
+    - Sân mình có bán gì không?
+    - Ở sân bóng có dịch vụ gì không?
+    - Có bán gì không?
+    - Có bán quần áo gì không?
+
+- intent: hoi_chi_tiet_san_pham
+  examples: |
+    - Có bán [quần](san_pham) không?
+    - Cho tôi xem [áo](san_pham) thể thao?
+    - Tôi muốn mua [giày](san_pham) đá bóng?
+    - mua [bao tay](san_pham)
+    - [áo thun](san_pham)
+
+- intent: hoi_dich_vu_di_kem
+  examples: |
+    - có bán nước uống gì không
+    - có bán đồ ăn đồ uống gì không
+    - bán nước gì không
+    - tôi muốn mua nước thì làm sao
+    - đá bóng khát nước
+    
+
+
+
+
+  
+
+
+
+
+

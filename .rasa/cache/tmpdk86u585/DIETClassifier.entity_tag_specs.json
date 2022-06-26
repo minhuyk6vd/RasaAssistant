@@ -1,0 +1,36 @@
+[
+  {
+    "tag_name": "entity",
+    "ids_to_tags": {
+      "1": "B-san_pham",
+      "2": "I-san_pham",
+      "3": "L-san_pham",
+      "4": "U-san_pham",
+      "5": "B-ten_dia_ban",
+      "6": "I-ten_dia_ban",
+      "7": "L-ten_dia_ban",
+      "8": "U-ten_dia_ban",
+      "9": "B-ten_san_bong",
+      "10": "I-ten_san_bong",
+      "11": "L-ten_san_bong",
+      "12": "U-ten_san_bong",
+      "0": "O"
+    },
+    "tags_to_ids": {
+      "B-san_pham": 1,
+      "I-san_pham": 2,
+      "L-san_pham": 3,
+      "U-san_pham": 4,
+      "B-ten_dia_ban": 5,
+      "I-ten_dia_ban": 6,
+      "L-ten_dia_ban": 7,
+      "U-ten_dia_ban": 8,
+      "B-ten_san_bong": 9,
+      "I-ten_san_bong": 10,
+      "L-ten_san_bong": 11,
+      "U-ten_san_bong": 12,
+      "O": 0
+    },
+    "num_tags": 13
+  }
+]
