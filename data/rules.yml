@@ -16,3 +16,9 @@ rules:
   steps:
   - intent: hoi_chi_tiet_san_pham
   - action: action_show_link_san_pham_chi_tiet
+
+- rule: Activate San chua duoc thue Form
+  steps:
+  - intent: hoi_san_chua_duoc_thue
+  - action: chi_tiet_san_trong_form
+  - active_loop: chi_tiet_san_trong_form

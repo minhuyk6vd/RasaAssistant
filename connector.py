@@ -1,15 +1,5 @@
 import mysql.connector
 
-# Connect to server
-
-
-# # Fetch one result
-# db = cur.fetchone()
-# print("Current date is: {0}".format(row[0]))
-
-# # Close connection
-# cnx.close()
-
 mydb = mysql.connector.connect(
 host="127.0.0.1",
 port=3306,

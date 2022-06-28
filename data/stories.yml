@@ -57,6 +57,11 @@ stories:
   - intent: hoi_khuyen_mai
   - action: utter_khuyen_mai
 
+- story: hoi dich vu di kem
+  steps:
+  - intent: hoi_dich_vu_di_kem
+  - action: utter_dich_vu_di_kem
+
 - story: hoi cac tinh nang cua chatbot
   steps:
   - intent: hoi_tinh_nang_chatbot
@@ -72,6 +77,7 @@ stories:
   - slot_was_set:
     - ten_san_bong: FPT
   - action: action_show_link_san_bong 
+  - action: action_clear_slots
 
 - story: dat san bong co entity ten san bong
   steps:
@@ -81,6 +87,7 @@ stories:
   - slot_was_set:
     - ten_san_bong: FPT
   - action: action_show_link_san_bong 
+  - action: action_clear_slots
 
 - story: hoi san bong gan vi tri nguoi dan chua co entity vi tri
   steps:
@@ -92,6 +99,7 @@ stories:
   - slot_was_set:
     - ten_dia_ban: Quang Vinh
   - action: action_show_link_san_bong_tren_dia_ban
+  - action: action_clear_slots
 
 - story: hoi san bong gan vi tri nguoi dung co entity 
   steps: 
@@ -101,6 +109,7 @@ stories:
   - slot_was_set:
     - ten_dia_ban: Quang Vinh
   - action: action_show_link_san_bong_tren_dia_ban
+  - action: action_clear_slots
 
 - story: hoi dich vu khac
   steps:
@@ -122,8 +131,97 @@ stories:
     - san_pham: giày
   - action: action_show_link_san_pham_chi_tiet
 
+- story: hoi san pham ban chay chua co entity san pham
+  steps:
+  - intent: hoi_san_pham_ban_chay
+  - action: action_show_link_tat_ca_san_pham_ban_chay
+  - intent: hoi_san_pham_ban_chay_entity_loai_san_pham
+    entities:
+    - san_pham: áo
+  - slot_was_set:
+    - ten_dia_ban: áo
+  - action: action_show_link_ban_chay_theo_loai_san_pham
 
+- story: hoi san san pham ban chay co entity 
+  steps: 
+  - intent: hoi_san_pham_ban_chay_entity_loai_san_pham
+    entities:
+    - san_pham: áo
+  - slot_was_set:
+    - ten_dia_ban: áo
+  - action: action_show_link_ban_chay_theo_loai_san_pham
 
+- story: hoi dich vu khac ban chay
+  steps:
+  - intent: hoi_dich_vu_khac
+  - action: utter_dich_vu_khac
+  - intent: hoi_san_pham_ban_chay_entity_loai_san_pham
+    entities:
+    - san_pham: giày
+  - slot_was_set:
+    - san_pham: giày
+  - action: action_show_link_ban_chay_theo_loai_san_pham
+
+- story: hoi san pham moi chua co entity san pham
+  steps:
+  - intent: hoi_san_pham_moi
+  - action: action_show_link_tat_ca_san_pham_moi
+  - intent: hoi_san_pham_moi_entity_loai_san_pham
+    entities:
+    - san_pham: áo
+  - slot_was_set:
+    - ten_dia_ban: áo
+  - action: action_show_link_san_pham_moi_theo_loai
+
+- story: hoi san san pham moi co entity 
+  steps: 
+  - intent: hoi_san_pham_moi_entity_loai_san_pham
+    entities:
+    - san_pham: áo
+  - slot_was_set:
+    - ten_dia_ban: áo
+  - action: action_show_link_san_pham_moi_theo_loai
+
+- story: hoi dich vu moi ban chay
+  steps:
+  - intent: hoi_dich_vu_khac
+  - action: utter_dich_vu_khac
+  - intent: hoi_san_pham_ban_chay_entity_loai_san_pham
+    entities:
+    - san_pham: giày
+  - slot_was_set:
+    - san_pham: giày
+  - action: action_show_link_san_pham_moi_theo_loai
+
+- story: hoi san bong chua duoc thue 1
+  steps:
+  - intent: hoi_san_chua_duoc_thue
+  - action: chi_tiet_san_trong_form
+  - active_loop: chi_tiet_san_trong_form
+  - slot_was_set:
+    - requested_slot: ten_san_bong
+  - slot_was_set:
+    - ten_san_bong: FPT
+  - slot_was_set:
+    - ten_san_bong: null
+  - slot_was_set:
+    - requested_slot: thoi_gian_ngay
+  - slot_was_set:
+    - thoi_gian_ngay: ngày mai
+  - slot_was_set:
+    - thoi_gian_ngay: null
+  - slot_was_set:
+    - requested_slot: thoi_gian_gio
+  - slot_was_set:
+    - thoi_gian_gio: 4 giờ chiều
+  - slot_was_set:
+    - thoi_gian_gio: null
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_submit_san_chua_duoc_thue_slots
+  - action: action_show_link_san_chua_duoc_thue
+  - action: action_clear_slots
 
 
 

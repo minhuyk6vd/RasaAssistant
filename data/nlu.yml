@@ -169,7 +169,6 @@ nlu:
     - Sân mình có bán gì không?
     - Ở sân bóng có dịch vụ gì không?
     - Có bán gì không?
-    - Có bán quần áo gì không?
 
 - intent: hoi_chi_tiet_san_pham
   examples: |
@@ -178,6 +177,8 @@ nlu:
     - Tôi muốn mua [giày](san_pham) đá bóng?
     - mua [bao tay](san_pham)
     - [áo thun](san_pham)
+    - có bán [áo](san_pham) gì không?
+    - 
 
 - intent: hoi_dich_vu_di_kem
   examples: |
@@ -186,9 +187,68 @@ nlu:
     - bán nước gì không
     - tôi muốn mua nước thì làm sao
     - đá bóng khát nước
+
+- intent: hoi_san_pham_ban_chay
+  examples: |
+    - Cái nào là nhiều người mua nhất vậy?
+    - Cái nào bán chạy nhất vậy bạn?
+    - Vậy cái nào bán chạy nhất hè?
+    - Cái gì được mua nhiều nhất vậy?
+    - Hiện tại cái nào hot nhất vậy?
+    - Sản phẩm nào được yêu thích nhất vậy?
+    - Sản phẩm đang được chuộng nhất?
+
+- intent: hoi_san_pham_ban_chay_entity_loai_san_pham
+  examples: |
+    - Cái [áo](san_pham) nào là nhiều người mua nhất vậy?
+    - Cái [bao tay](san_pham) nào bán chạy nhất vậy bạn?
+    - [giày](san_pham) nào bán chạy nhất?
+    - Cái [giày](san_pham) được chuộng nhất vậy?
+    - Có [áo](san_pham) nào đang hot không?
+
+- intent: hoi_san_pham_moi
+  examples: |
+    - Bữa nay có sản phẩm nào mới không?
+    - Cửa hàng có bán gì mới không?
+    - Hôm nay có sản phẩm nào mới không vậy?
+    - Có cái nào mới về hàng không?
+
+- intent: hoi_san_pham_moi_entity_loai_san_pham
+  examples: |
+    - Bữa nay có [áo](san_pham) nào mới không?
+    - Hôm nay có [áo](san_pham) nào mới không vậy?
+    - Có [giày](san_pham) nào mới về hàng không?
+    - Có [giày](san_pham) mới về hả?
     
 
+- intent: hoi_san_chua_duoc_thue
+  examples: |
+    - tôi muốn xem sân còn trống?
+    - có sân nào chưa được đặt không?
+    - còn sân nào chưa ai thuê không?
+    - sân nào không ai đặt?
+    - tôi có thể thuê sân nào?
+    - có sân nào trống không   
 
+
+- intent: inform
+  examples: |
+    - sân [FPT](ten_san_bong) còn trống không?
+    - tôi muốn đặt lúc [4 giờ chiều](thoi_gian_gio)
+    - tôi muốn xem [ngày mai](thoi_gian_ngay)
+    - [Ngũ Hành Sơn](ten_san_bong)
+    - [Tuyên Sơn](ten_san_bong)
+    - [Hoà Hải](ten_san_bong)
+    - [4 giờ chiều](thoi_gian_gio)
+    - [5 giờ chiều](thoi_gian_gio)
+    - [6 giờ chiều](thoi_gian_gio)
+    - [ngày mai](thoi_gian_ngay)
+    - [chiều mai](thoi_gian_ngay)
+    - [hôm nay](thoi_gian_ngay)
+    - [mai](thoi_gian_ngay)
+    - [sáng mốt](thoi_gian_ngay)
+    - [sáng nay](thoi_gian_ngay)
+    - tôi muốn đổi thành [5 giờ chiều](thoi_gian_gio)
 
 
   
