@@ -21,13 +21,10 @@ mydb = mysql.connector.connect(
 list_ten_san_bong = ["Tuyên Sơn", "Ngũ Hành Sơn", "Hoà Vang", "Nam Phước",
                     "Hoà Hải", "FPT", "Tân Sơn Nhất", "Hoà Sơn"]
 
-list_ten_dia_ban = ["Quang Vinh", "Quang Thị Lại", "Nam Kì Khởi Nghĩa", "Nguyễn Hữu Thọ", 
-                    "nam ki khoi nghia", "Nam Ki Khoi Nghia",  ]
+list_ten_dia_ban = ["Quang Vinh", "Quang Thị Lại", "Nam Kì Khởi Nghĩa", "Nguyễn Hữu Thọ"]
 
 list_san_pham = ["giày","áo","quần","áo thun"]
 
-ALLOWED_TEN_SAN_BONG = ["Tuyên Sơn", "Ngũ Hành Sơn", "Hoà Vang", "Nam Phước",
-                    "Hoà Hải", "FPT", "Tân Sơn Nhất", "Hoà Sơn"]
 
 list_thoi_gian_ngay = ["ngày mai", "mai", "chiều mai", "sáng mai",
                     "ngày mốt", "mốt", "chiều mốt", "sáng mốt",
@@ -45,7 +42,7 @@ thoi_gian_5_gio = ["5 giờ chiều","5 giờ"]
 thoi_gian_6_gio = ["6 giờ chiều","6 giờ"]
 thoi_gian_7_gio = ["7 giờ chiều","7 giờ"]
 
-link_web = "abcxyz"
+link_web = "http://localhost:8080"
 
 
 class ActionShowLinkSanBong(Action):
@@ -69,7 +66,7 @@ class ActionShowLinkSanBong(Action):
         if  ten_san_bong not in list_ten_san_bong :
             dispatcher.utter_message(text="Chúng tôi không có sân bóng nào tên như vậy cả. Vui lòng nhập đúng tên sân bóng!")
         else:
-            dispatcher.utter_message(text=f"Đây là link sân bóng {ten_san_bong}, bạn vui lòng click vào link để xem chi tiết giá và thời gian đặt sân: https://"+link_web+f"/booking/pitch/{id}")
+            dispatcher.utter_message(text=f"Đây là link sân bóng {ten_san_bong}, bạn vui lòng click vào link để xem chi tiết giá và thời gian đặt sân: "+link_web+f"/booking/pitch/{id}")
         return []
 
 class ActionShowLinkSanBongTrenDiaBan(Action):
@@ -86,11 +83,16 @@ class ActionShowLinkSanBongTrenDiaBan(Action):
         cur = mydb.cursor()
         # sql = 'select f.* from football_pitchs f where f.street_number like "%{0}%" and f.user_id is not null;'.format(ten_dia_ban)
 
-        sql = 'SELECT f.*, FROM football_pitchs f \
+        sql = 'SELECT f.* FROM football_pitchs f \
                 inner join wards w on f.ward_id = w.id \
                 inner join districts d on w.district_id=d.id \
-                where d.district_name like "%{0}%" or w.ward_name like "%{0}%" \
-                or f.street_number like "%{0}%" and user_id is not null;'.format(ten_dia_ban)
+                where (d.district_name like "%{0}%" or w.ward_name like "%{0}%" or f.street_number like "%{0}%") and f.user_id is not null;'.format(ten_dia_ban)
+
+        # sql = 'SELECT f.*, FROM football_pitchs f \
+        #         inner join wards w on f.ward_id = w.id \
+        #         inner join districts d on w.district_id=d.id \
+        #         where d.district_name like "%{0}%" or w.ward_name like "%{0}%" \
+        #         or f.street_number like "%{0}%" and user_id is not null;'.format(ten_dia_ban)
         cur.execute(sql)
 
         if  ten_dia_ban not in list_ten_dia_ban :
@@ -98,7 +100,7 @@ class ActionShowLinkSanBongTrenDiaBan(Action):
         else:
             dispatcher.utter_message(text=f"Đây là danh sách các sân gần khu vực {ten_dia_ban}, bạn vui lòng click vào link từng sân để xem chi tiết:")
             for table in cur:
-                dispatcher.utter_message(text=f"{table[7]}: https://"+link_web+f"/booking/pitch/{table[0]}")
+                dispatcher.utter_message(text=f"{table[7]}: "+link_web+f"/booking/pitch/{table[0]}")
 
         return []
 
@@ -122,7 +124,7 @@ class ActionShowLinkSanPhamChiTiet(Action):
         else:
             dispatcher.utter_message(text=f"Đây là danh sách các sản phẩm {san_pham} mà chúng tôi đang bán, click vào từng link để xem chi tiết:")
             for table in cur:
-                dispatcher.utter_message(text=f"{table[8]}, giá:{table[9]}VND. Chi tiết: https://"+link_web+f"/product-detail/value={table[0]}/category={table[13]}")
+                dispatcher.utter_message(text=f"{table[8]}, giá:{table[9]}VND. Chi tiết: "+link_web+f"/product-detail/value={table[0]}/category={table[13]}")
 
         return []
 
@@ -136,12 +138,13 @@ class ActionShowLinkTatCaSanPhamBanChay(Action):
         domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
 
         cur = mydb.cursor()
-        sql = 'select p.*,sum(o.quantity) as tongSoLuongBan from products p inner join order_detail as o on o.product_id = p.id group by p.id order by tongSoLuongBan desc limit 8;'
+        sql = 'select p.*,sum(o.quantity) as tongSoLuongBan from products p inner join order_detail \
+            as o on o.product_id = p.id group by p.id order by tongSoLuongBan desc limit 8;'
         cur.execute(sql)
 
         dispatcher.utter_message(text=f"Đây là danh sách các sản phẩm bán chạy của cửa hàng, click vào từng link để xem chi tiết:")
         for table in cur:
-            dispatcher.utter_message(text=f"{table[8]}, giá:{table[9]}VND. Chi tiết: https://"+link_web+f"/product-detail/value={table[0]}/category={table[13]}")
+            dispatcher.utter_message(text=f"{table[8]}, giá:{table[9]}VND. Chi tiết: "+link_web+f"/product-detail/value={table[0]}/category={table[13]}")
 
         return []
 
@@ -157,7 +160,8 @@ class ActionShowLinkSanPhamBanChayTheoLoaiSanPham(Action):
         san_pham = tracker.get_slot("san_pham")
 
         cur = mydb.cursor()
-        sql = 'select p.*,sum(o.quantity) as tongSoLuongBan from products p inner join order_detail as o on o.product_id = p.id where p.name like "%{0} %" group by p.id order by tongSoLuongBan desc limit 5;'.format(san_pham)
+        sql = 'select p.*,sum(o.quantity) as tongSoLuongBan from products p inner join order_detail as o on o.product_id = p.id \
+            where p.name like "%{0}%" group by p.id order by tongSoLuongBan desc limit 5;'.format(san_pham)
         cur.execute(sql)
 
         if  san_pham not in list_san_pham :
@@ -165,7 +169,7 @@ class ActionShowLinkSanPhamBanChayTheoLoaiSanPham(Action):
         else:
             dispatcher.utter_message(text=f"Đây là danh sách các sản phẩm {san_pham} bán chạy của cửa hàng, click vào từng link để xem chi tiết:")
             for table in cur:
-                dispatcher.utter_message(text=f"{table[8]}, giá:{table[9]}VND. Chi tiết: https://"+link_web+f"/product-detail/value={table[0]}/category={table[13]}")
+                dispatcher.utter_message(text=f"{table[8]}, giá:{table[9]}VND. Chi tiết: "+link_web+f"/product-detail/value={table[0]}/category={table[13]}")
 
         return []
 
@@ -184,7 +188,7 @@ class ActionShowLinkTatCaSanPhamMoiNhat(Action):
 
         dispatcher.utter_message(text=f"Đây là danh sách các sản phẩm mới nhất của cửa hàng, click vào từng link để xem chi tiết:")
         for table in cur:
-            dispatcher.utter_message(text=f"{table[8]}, giá:{table[9]}VND. Chi tiết: https://"+link_web+f"/product-detail/value={table[0]}/category={table[13]}")
+            dispatcher.utter_message(text=f"{table[8]}, giá:{table[9]}VND. Chi tiết: "+link_web+f"/product-detail/value={table[0]}/category={table[13]}")
 
         return []
 
@@ -200,7 +204,7 @@ class ActionShowLinkSanPhamMoiNhatTheoLoaiSanPham(Action):
         san_pham = tracker.get_slot("san_pham")
 
         cur = mydb.cursor()
-        sql = 'SELECT * FROM project_football_pitch.products p where (status = 1 and quantity > 0 and p.name like "%{0}%") order by createddate DESC limit 5;'.format(san_pham)
+        sql = 'SELECT * FROM project_football_pitch.products p where (status = 1 and quantity > 0 and p.name like "%{0} %") order by createddate DESC limit 5;'.format(san_pham)
         cur.execute(sql)
 
         if  san_pham not in list_san_pham :
@@ -208,7 +212,7 @@ class ActionShowLinkSanPhamMoiNhatTheoLoaiSanPham(Action):
         else:
             dispatcher.utter_message(text=f"Đây là danh sách các sản phẩm {san_pham} mới nhất của của cửa hàng, click vào từng link để xem chi tiết:")
             for table in cur:
-                dispatcher.utter_message(text=f"{table[8]}, giá:{table[9]}VND. Chi tiết: https://"+link_web+f"/product-detail/value={table[0]}/category={table[13]}")
+                dispatcher.utter_message(text=f"{table[8]}, giá:{table[9]}VND. Chi tiết: "+link_web+f"/product-detail/value={table[0]}/category={table[13]}")
 
         return []
 
@@ -224,7 +228,7 @@ class ValidateSanBongChuaDuocThueForm(FormValidationAction):
         tracker: Tracker,
         domain: DomainDict,
     ) -> Dict[Text, Any]:
-            if slot_value.lower() not in ALLOWED_TEN_SAN_BONG:
+            if slot_value.lower() not in list_ten_san_bong:
                 dispatcher.utter_message(text=f"Chúng tôi không có sân bóng nào tên như vậy cả. Vui lòng nhập đúng tên sân bóng!")
                 return {"ten_san_bong":None}
             return {"ten_san_bong":slot_value}
@@ -310,7 +314,8 @@ class ActionShowLinkSanChuaDuocThue(Action):
         cur.execute(sql)
         dispatcher.utter_message(text=f"Đây là danh sách các sân nhỏ còn trống, bạn vui lòng click vào link từng sân nhỏ để xem chi tiết:")
         for table in cur:
-                dispatcher.utter_message(text=f"{table[0]}: https://"+link_web+f"/booking/pitch/{table[0]}")
+                dispatcher.utter_message(text=f"{table[0]}: "+link_web+f"/booking/pitch/{table[0]}")
+                dispatcher.utter_image_url("")
         
         return []
 

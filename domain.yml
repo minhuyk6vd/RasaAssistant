@@ -1,12 +1,5 @@
 version: '3.1'
 intents:
-- affirm
-- bot_challenge
-- deny
-- goodbye
-- greet
-- mood_great
-- mood_unhappy
 - chao_hoi
 - hoi_thong_tin_san
 - hoi_gia_thue_san
@@ -25,6 +18,7 @@ intents:
 - hoi_san_pham_moi_entity_loai_san_pham
 - hoi_san_chua_duoc_thue
 - inform
+- xem_du_bao_thoi_tiet
 
 
 entities:
@@ -78,38 +72,37 @@ forms:
       - thoi_gian_gio
 
 responses:
-  utter_greet:
-  - text: Hey! How are you?
-  utter_cheer_up:
-  - text: 'Here is something to cheer you up:'
-    image: https://i.imgur.com/nGF1K8f.jpg
-  utter_did_that_help:
-  - text: Did that help you?
-  utter_happy:
-  - text: Great, carry on!
-  utter_goodbye:
-  - text: Bye
-  utter_iamabot:
-  - text: I am a bot, powered by Rasa.
   utter_chao_hoi:
-  - text: Chào bạn, tôi có thể giúp gì cho bạn?
   - text: Xin chào, bạn đang cần gì ạ?
+    buttons:
+      - title: "Xem thông tin sân bóng"
+        payload: '/dat_san_bong'
+      - title: "Tìm sân bóng gần đây"
+        payload: '/san_bong_trong_dia_ban'
+      - title: "Hỏi mua sản phẩm"
+        payload: '/hoi_dich_vu_khac'   
+      - title: "Tìm sân bóng còn trống"
+        payload: '/hoi_san_chua_duoc_thue' 
+      - title: "Xem dự báo thời tiết"
+        payload: '/hoi_dich_vu_khac' 
+
   utter_thong_tin_san:
   - text: |
           Chúng tôi cho thuê sân 5 và sân 7 tại khu vực nội thành Đà Nẵng, 
-          để biết thêm chi tiết bạn vui lòng click vào link này : https://92f2-116-105-174-200.ap.ngrok.io/booking
+          để biết thêm chi tiết bạn vui lòng click vào link này : http://localhost:8080/booking
+    image: "https://reviewngon.vn/wp-content/uploads/2021/06/top-7-san-co-nhan-tao-tot-nhat-o-hue-danh-cho-fans-me-bong-da-13400-6.jpg"
   utter_gia_thue_san:
   - text: |
           Giá thuê mỗi sân bóng giao động từ 150.000vnđ - 400.000vnđ tuỳ thời gian và loại sân, 
           để biết thêm chi tiết bạn vui lòng click vào link này: https://92f2-116-105-174-200.ap.ngrok.io/booking
   utter_khuyen_mai:
   - text: Hiện tại chúng tôi có chương trình khuyến mãi rút thăm trực tiếp tại sân để nhận quà. 
-            Mỗi sân được thuê sẽ có 3 lượt rút thăm 100% có quà từ áo quần đến giày thể thao. 
             Nhanh tay đặt sân để nhận quà nhé.  
   utter_tinh_nang_chatbot:
   - text: Tôi có thể trả lời các câu hỏi cơ bản về thông tin dịch vụ, khuyến mãi. 
           Ngoài ra tôi còn có thể đề xuất cho bạn các sân bóng gần vị trí của bạn, 
-          các sản phẩm thể thao mà bạn muốn mua cũng như dự báo thời tiết để thuận tiện có việc lên kế hoạch đặt sân.
+          các sản phẩm thể thao mà bạn muốn mua cũng như dự báo thời tiết để thuận tiện có rviệc lên kế hoạch đặt sân.
+
   utter_hoi_ten_san_bong:
   - text: Bạn muốn đặt ở sân bóng nào?
 
@@ -142,8 +135,6 @@ session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true
 actions:
-- utter_goodbye
-- utter_greet
 - action_show_link_san_bong
 - action_show_link_san_bong_tren_dia_ban
 - action_show_link_san_pham_chi_tiet

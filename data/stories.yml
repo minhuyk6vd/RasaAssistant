@@ -2,40 +2,6 @@ version: "3.1"
 
 stories:
 
-- story: happy path
-  steps:
-  - intent: greet
-  - action: utter_greet
-  - intent: mood_great
-  - action: utter_happy
-
-- story: sad path 1
-  steps:
-  - intent: greet
-  - action: utter_greet
-  - intent: mood_unhappy
-  - action: utter_cheer_up
-  - action: utter_did_that_help
-  - intent: affirm
-  - action: utter_happy
-
-- story: sad path 2
-  steps:
-  - intent: greet
-  - action: utter_greet
-  - intent: mood_unhappy
-  - action: utter_cheer_up
-  - action: utter_did_that_help
-  - intent: deny
-  - action: utter_goodbye
-
-- story: interactive_story_1
-  steps:
-  - intent: greet
-  - action: utter_greet
-  - intent: goodbye
-  - action: utter_goodbye
-  - intent: mood_great
 
 - story: chao hoi
   steps:
@@ -191,7 +157,7 @@ stories:
     - san_pham: giày
   - slot_was_set:
     - san_pham: giày
-  - action: action_show_link_san_pham_moi_theo_loai
+  - action: action_show_link_tat_ca_san_pham_ban_chay
 
 - story: hoi san bong chua duoc thue 1
   steps:

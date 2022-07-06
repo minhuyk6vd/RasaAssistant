@@ -1,93 +1,5 @@
 version: "3.1"
 nlu:
-- intent: greet
-  examples: |
-    - hey
-    - hello
-    - hi
-    - hello there
-    - good morning
-    - good evening
-    - moin
-    - hey there
-    - let's go
-    - hey dude
-    - goodmorning
-    - goodevening
-    - good afternoon
-
-- intent: goodbye
-  examples: |
-    - cu
-    - good by
-    - cee you later
-    - good night
-    - bye
-    - goodbye
-    - have a nice day
-    - see you around
-    - bye bye
-    - see you later
-
-- intent: affirm
-  examples: |
-    - yes
-    - y
-    - indeed
-    - of course
-    - that sounds good
-    - correct
-    - oke
-
-- intent: deny
-  examples: |
-    - no
-    - n
-    - never
-    - I don't think so
-    - don't like that
-    - no way
-    - not really
-
-- intent: mood_great
-  examples: |
-    - perfect
-    - great
-    - amazing
-    - feeling like a king
-    - wonderful
-    - I am feeling very good
-    - I am great
-    - I am amazing
-    - I am going to save the world
-    - super stoked
-    - extremely good
-    - so so perfect
-    - so good
-    - so perfect
-
-- intent: mood_unhappy
-  examples: |
-    - my day was horrible
-    - I am sad
-    - I don't feel very well
-    - I am disappointed
-    - super sad
-    - I'm so sad
-    - sad
-    - very sad
-    - unhappy
-    - not good
-    - not very good
-    - extremly sad
-    - so saad
-    - so sad
-- intent: bot_challenge
-  examples: |
-    - are you a bot?
-    - are you a human?
-    - am I talking to a bot?
-    - am I talking to a human?
 
 - intent: chao_hoi
   examples: |
@@ -201,7 +113,7 @@ nlu:
 - intent: hoi_san_pham_ban_chay_entity_loai_san_pham
   examples: |
     - Cái [áo](san_pham) nào là nhiều người mua nhất vậy?
-    - Cái [bao tay](san_pham) nào bán chạy nhất vậy bạn?
+    - Cái [quần](san_pham) nào bán chạy nhất vậy bạn?
     - [giày](san_pham) nào bán chạy nhất?
     - Cái [giày](san_pham) được chuộng nhất vậy?
     - Có [áo](san_pham) nào đang hot không?
@@ -213,12 +125,14 @@ nlu:
     - Hôm nay có sản phẩm nào mới không vậy?
     - Có cái nào mới về hàng không?
 
+
 - intent: hoi_san_pham_moi_entity_loai_san_pham
   examples: |
     - Bữa nay có [áo](san_pham) nào mới không?
     - Hôm nay có [áo](san_pham) nào mới không vậy?
     - Có [giày](san_pham) nào mới về hàng không?
     - Có [giày](san_pham) mới về hả?
+    - Có [giày](san_pham) nào mới bán không?
     
 
 - intent: hoi_san_chua_duoc_thue
@@ -228,8 +142,13 @@ nlu:
     - còn sân nào chưa ai thuê không?
     - sân nào không ai đặt?
     - tôi có thể thuê sân nào?
-    - có sân nào trống không   
+    - có sân nào trống không  
 
+- intent: xem_du_bao_thoi_tiet
+  examples: |
+    - [ngày mai](thoi_gian_ngay) trời có mưa không
+    - [hôm nay](thoi_gian_ngay) thời tiết thế nào
+    - nhiệt độ [ngày mốt](thoi_gian_ngay) thế nào
 
 - intent: inform
   examples: |
@@ -241,15 +160,40 @@ nlu:
     - [Hoà Hải](ten_san_bong)
     - [4 giờ chiều](thoi_gian_gio)
     - [5 giờ chiều](thoi_gian_gio)
-    - [6 giờ chiều](thoi_gian_gio)
+    - [6 giờ tối](thoi_gian_gio)
     - [ngày mai](thoi_gian_ngay)
-    - [chiều mai](thoi_gian_ngay)
     - [hôm nay](thoi_gian_ngay)
-    - [mai](thoi_gian_ngay)
-    - [sáng mốt](thoi_gian_ngay)
-    - [sáng nay](thoi_gian_ngay)
     - tôi muốn đổi thành [5 giờ chiều](thoi_gian_gio)
 
+
+- synonym: FPT
+  examples: |
+    - fpt
+    - Fpt
+
+- synonym: ngày mai
+  examples: |
+    - chiều mai
+    - trưa mai
+    - sáng mai
+
+- synonym: ngày mốt
+  examples: |
+    - chiều mốt
+    - trưa mốt
+    - sáng mốt
+
+- synonym: hôm nay
+  examples: |
+    - chiều nay
+    - bữa nay
+    - sáng nay
+
+- synonym: Nam Kì Khởi Nghĩa
+  examples: |
+    - nam ki
+    - Nam Kì
+    - nam ki khoi nghia
 
   
 
